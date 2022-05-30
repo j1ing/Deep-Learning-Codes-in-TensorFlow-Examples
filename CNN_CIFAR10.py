@@ -154,7 +154,7 @@ plt.xlabel('Epoch')
 plt.ylabel('loss')
 plt.legend()
 
-Plot_CNN_CIFAR10.png
+https://github.com/j1ing/Deep-Learning-Codes-in-TensorFlow-Examples/blob/fe072e65abecea1b936698bd600fd0bc0701b74a/Plot_CNN_CIFAR10.png
 
 # history (last 5 epochs)
 """
