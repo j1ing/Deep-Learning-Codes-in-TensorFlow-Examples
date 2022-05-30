@@ -6,4 +6,4 @@ rather it gives simple examples for different algorithm with TensorFlow.
 
 When it is possible, I use the same dataset for different algorithms to show comparison.
 
-I upload a a plot of accuracy and loss for each training example.
+I also upload a a plot of accuracy and loss for each training example.
