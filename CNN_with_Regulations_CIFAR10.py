@@ -48,8 +48,6 @@ y_train shape = (10,)
 y_test shape = (10,)
 """
 
-
-
 # training model
 model = tf.keras.models.Sequential()
 
@@ -196,6 +194,6 @@ Epoch 50/50
 
 """
 Notes:
-Although this model reduced the high variance issue in the basic CNN model, it still suffers a bias issue. 
+Although this model reduced the high variance issue in the basic CNN model, it still suffers the bias issue. 
 Higher epochs and lower learning rate might improve the training accuracy.
 """
