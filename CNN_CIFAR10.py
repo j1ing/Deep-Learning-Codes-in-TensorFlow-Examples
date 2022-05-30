@@ -6,6 +6,20 @@ import matplotlib.pyplot as plt
 from tensorflow.keras.datasets import cifar10
 (x_train, y_train), (x_test, y_test) = cifar10.load_data()
 
+# class labels
+"""
+0: airplane
+1: automobile
+2: bird
+3: cat
+4: deer
+5: dog
+6: frog
+7: horse
+8: ship
+9: truck
+"""
+
 # data shape
 print("x_train  m = {}, image size = {}".format(x_train.shape[0], x_train.shape[1:]))
 print("y_train  m = {}".format(y_train.shape[0]))
@@ -34,18 +48,6 @@ y_train shape = (10,)
 y_test shape = (10,)
 """
 
-"""
-0: airplane
-1: automobile
-2: bird
-3: cat
-4: deer
-5: dog
-6: frog
-7: horse
-8: ship
-9: truck
-"""
 
 # training model
 model = tf.keras.models.Sequential()
@@ -79,8 +81,8 @@ model.add(tf.keras.layers.Flatten())
 model.add(tf.keras.layers.Dense(units=128, activation="relu"))
 model.add(tf.keras.layers.Dense(units=10, activation="softmax"))
 
-# Model summary
-#model.summary()
+# model summary
+model.summary()
 """
 _________________________________________________________________
 Layer (type)                 Output Shape              Param #   
@@ -127,7 +129,7 @@ Non-trainable params: 896
 _________________________________________________________________
 """
 
-# Compile model
+# compile model
 opt = tf.keras.optimizers.Adam(learning_rate=0.001)
 loss = tf.keras.losses.CategoricalCrossentropy(from_logits=False)
 
