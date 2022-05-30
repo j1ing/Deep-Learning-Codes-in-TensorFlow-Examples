@@ -154,9 +154,26 @@ plt.xlabel('Epoch')
 plt.ylabel('loss')
 plt.legend()
 
+
+# history (last 5 epochs)
+"""
+Epoch 20/25
+1563/1563 [==============================] - 249s 159ms/step - loss: 0.9317 - accuracy: 0.6701 - val_loss: 1.4480 - val_accuracy: 0.5367
+Epoch 21/25
+1563/1563 [==============================] - 254s 163ms/step - loss: 0.9210 - accuracy: 0.6742 - val_loss: 1.4146 - val_accuracy: 0.5481
+Epoch 22/25
+1563/1563 [==============================] - 262s 167ms/step - loss: 0.9090 - accuracy: 0.6794 - val_loss: 1.4569 - val_accuracy: 0.5363
+Epoch 23/25
+1563/1563 [==============================] - 234s 149ms/step - loss: 0.8957 - accuracy: 0.6825 - val_loss: 1.4027 - val_accuracy: 0.5450
+Epoch 24/25
+1563/1563 [==============================] - 242s 155ms/step - loss: 0.8821 - accuracy: 0.6879 - val_loss: 1.4931 - val_accuracy: 0.5422
+Epoch 25/25
+1563/1563 [==============================] - 248s 159ms/step - loss: 0.8747 - accuracy: 0.6896 - val_loss: 1.4850 - val_accuracy: 0.5397
+"""
+
 """
 Notes:
 2 Problems: Bias and Variance
-Bias: Higher epoch can bring the training accuracy higher
-Variance: Validation loss shows overfitting training data. Use regularizations to minimize overfitting. 
+Bias      : Higher epoch can bring the training accuracy higher.
+Variance  : Validation loss shows sign of overfitting training data. Use regularizations to minimize overfitting. 
 """
