@@ -154,6 +154,7 @@ plt.xlabel('Epoch')
 plt.ylabel('loss')
 plt.legend()
 
+Plot_CNN_CIFAR10.png
 
 # history (last 5 epochs)
 """
