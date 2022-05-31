@@ -9,7 +9,7 @@ https://www.kaggle.com/competitions/dogs-vs-cats/data?select=train.zip
 """
 
 # filepath
-filepath = "/Users/jeffling/Downloads/dogs-vs-cats/train/"
+filepath = "......"
 
 # list of directory
 import os
