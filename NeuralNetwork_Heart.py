@@ -10,56 +10,47 @@ import matplotlib.pyplot as plt
 """
 About this dataset
 
-age           - Age in Years
-
-sex           - Sex of the Patient
-
-1 = Male
-2 = Female
+age        
+sex        
+  1 = Male
+  0 = Female
 cp             - Chest Pain Type
-1 = Typical angina
-2 = Atypical angina
-3 = Non-anginal pain
+  1 = Typical angina
+  2 = Atypical angina
+  3 = Non-anginal pain
 trtbps - Resting Blood Pressure (in mm Hg on admission to the hospital)
-
-chol         - Serum Cholesterol in mg/dl
-
-fbs           - Fasting Blood sugar > 120 mg/dl
-
-0 = False
-1 = True
-restecg   - Resting Electrocardiographic Results
-0 = Hypertrophy
-1 = Normal
-2 = Having ST-T wave abnormality
-thalachh   - Maximum Heart Rate Achieved
-
-exng       - Exercise Induced Angina
-
-0 = No
-1 = Yes
-oldpeak   - ST Depression Induced by Exercise Relative to Rest
-
+chol - Serum Cholesterol in mg/dl
+fbs - Fasting Blood sugar > 120 mg/dl
+  0 = False
+  1 = True
+restecg - Resting Electrocardiographic Results
+  0 = Hypertrophy
+  1 = Normal
+  2 = Having ST-T wave abnormality
+thalachh - Maximum Heart Rate Achieved
+exng - Exercise Induced Angina
+  0 = No
+  1 = Yes
+oldpeak - ST Depression Induced by Exercise Relative to Rest
 slp       - The Slope of the Peak Exercise ST Segment
-
-0 = Downsloping
-1 = Flat
-2 = Upsloping
-caa             - Number of Major Vessels (0-3) Colored by Flourosopy
-
-thall         - Thallium Stress Test Result
-
-0 = Null
-1 = Fixed defect
-2 = Normal
-3 = Reversible defect
-output     - The Predicted Attribute - Diagnosis of Heart Disease (angiographic disease status)
-0 = < 50% Diameter Narrowing (Heart Attack= No )
-1 = > 50% Diameter Narrowing (Heart Attack= Yes)
+  0 = Downsloping
+  1 = Flat
+  2 = Upsloping
+caa - Number of Major Vessels (0-3) Colored by Flourosopy
+thall - Thallium Stress Test Result
+  0 = Null
+  1 = Fixed defect
+  2 = Normal
+  3 = Reversible defect
+output - The Predicted Attribute - Diagnosis of Heart Disease (angiographic disease status)
+  0 = < 50% Diameter Narrowing (Heart Attack= No )
+  1 = > 50% Diameter Narrowing (Heart Attack= Yes)
 """
 
-df = pd.read_csv("/Users/jeffling/Downloads/archive/heart.csv")
+# load dataframe
+df = pd.read_csv("....")
 
+# explore data
 df.columns
 """
 Index(['age', 'sex', 'cp', 'trtbps', 'chol', 'fbs', 'restecg', 'thalachh',
@@ -88,8 +79,10 @@ df.info()
 dtypes: float64(1), int64(13)
 """
 
+# see image in Deep-Learning_Codes_in_TensorFlow_examples
 sns.heatmap(df.corr(),annot = True,fmt = '.1f')
 
+# get dummy variables for cp, restecg, slp and thall
 cp = df["cp"]
 cp = pd.get_dummies(cp,drop_first=True)
 cp = cp.rename({1:"cp1",2:"cp2",3:"cp3"},axis=1)
@@ -141,21 +134,26 @@ thall = thall.rename({1:"thall1",2:"thall",3:"thall3"},axis=1)
 4         0      1       0
 """
 
+# finalize the datafram
 df = df.drop(["cp","restecg","slp","thall"],axis=1)
 df = pd.concat([df,cp,ecg,slp,thall],axis=1)
 
+# split dataframe into X and y
 X = df.drop("output",axis=1)
 y = df["output"]
 
+# split X and y to training data and validaiton data
 from sklearn.model_selection import train_test_split
 x_train,x_test,y_train,y_test = train_test_split(X,y,test_size=0.2,random_state=101)
 
+# feature scaling X
 from sklearn.preprocessing import StandardScaler
 scaler = StandardScaler()
 scaler.fit(x_train)
 x_train = scaler.transform(x_train)
 x_test = scaler.transform(x_test)
 
+# build model
 import tensorflow as tf
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Dense,Dropout,BatchNormalization
@@ -172,9 +170,13 @@ model.add(Dropout(0.2))
 model.add(Dense(10,activation="relu"))
 model.add(Dropout(0.4))
 model.add(Dense(1,activation="sigmoid"))
+
+# compile model
 opt = tf.keras.optimizers.Adam(learning_rate=0.0001)
 loss = tf.keras.losses.BinaryCrossentropy(from_logits=False)
 model.compile(optimizer=opt,loss=loss,metrics=["accuracy"])
+
+# train model
 history = model.fit(x_train,y_train,batch_size=32,epochs=700,validation_data=(x_test,y_test))
 
 # plot loss and accuracy
