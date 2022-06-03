@@ -283,13 +283,13 @@ import cv2
 for i in range(1,13):
     plt.subplot(4,3,i)
     s = np.random.randint(0,len(testdf))
-    img = cv2.imread(filepath + "test/" + testdf["filename"][s])
-    a = cv2.rectangle(img,(testdf["xmin"][s],testdf["ymin"][s]),(testdf["xmax"][s],testdf["ymax"][s]),(255,0,0),2)
-    p = cv2.rectangle(a,(test_bb[s][0],test_bb[s][1]),(test_bb[s][2],test_bb[s][3]),(0,255,0),2)
+    img1 = cv2.imread(filepath + "test/" + testdf["filename"][s])
+    img2 = cv2.rectangle(img1,(testdf["xmin"][s],testdf["ymin"][s]),(testdf["xmax"][s],testdf["ymax"][s]),(255,0,0),2)
+    img3 = cv2.rectangle(img2,(test_bb[s][0],test_bb[s][1]),(test_bb[s][2],test_bb[s][3]),(0,255,0),2)
     indicator = "{} {}%".format(testletters[s],testlabelprob[s])
-    z = cv2.putText(p, indicator, (test_bb[s][0], test_bb[s][1]), cv2.FONT_HERSHEY_SIMPLEX, 0.65, (0, 255, 0), 2)
-    f = cv2.putText(z, testdf["class"][s], (testdf["xmin"][s],testdf["ymin"][s]), cv2.FONT_HERSHEY_SIMPLEX, 0.65, (255,0, 0), 2)
-    plt.imshow(f)
+    img4 = cv2.putText(img3, indicator, (test_bb[s][0], test_bb[s][1]), cv2.FONT_HERSHEY_SIMPLEX, 0.65, (0, 255, 0), 2)
+    img5 = cv2.putText(img4, testdf["class"][s], (testdf["xmin"][s],testdf["ymin"][s]), cv2.FONT_HERSHEY_SIMPLEX, 0.65, (255,0, 0), 2)
+    plt.imshow(img5)
 
 
 
