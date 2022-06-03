@@ -3,7 +3,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 # load data
-filepath = "/Users/jeffling/Downloads/Raccoon/"
+filepath = "..."
 
 traindf = pd.read_csv(filepath + "train/_annotations.csv")
 validdf = pd.read_csv(filepath + "valid/_annotations.csv")
