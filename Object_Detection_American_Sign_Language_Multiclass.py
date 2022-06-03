@@ -3,7 +3,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 # load data
-filepath = "/Users/jeffling/Downloads/American Sign Language Letters.v1-v1.tensorflow/"
+filepath = "..."
 
 traindf = pd.read_csv(filepath + "train/_annotations.csv")
 validdf = pd.read_csv(filepath + "valid/_annotations.csv")
