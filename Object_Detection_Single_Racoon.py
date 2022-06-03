@@ -116,7 +116,7 @@ testpred["predymax"] = testpred["predymax"].astype("Int64")
 import cv2
 for i in range(len(testpred)):
     plt.subplot(5,4,i+1)
-    img = cv2.imread(filepath + "test/" + testpred["filename"][i])
-    a = cv2.rectangle(img,(testpred["xmin"][i],testpred["ymin"][i]),(testpred["xmax"][i],testpred["ymax"][i]),(255,0,0),2)
-    p = cv2.rectangle(a,(testpred["predxmin"][i],testpred["predymin"][i]),(testpred["predxmax"][i],testpred["predymax"][i]),(0,255,0),2)
-    plt.imshow(p)
+    img1 = cv2.imread(filepath + "test/" + testpred["filename"][i])
+    img2 = cv2.rectangle(img1,(testpred["xmin"][i],testpred["ymin"][i]),(testpred["xmax"][i],testpred["ymax"][i]),(255,0,0),2)
+    img3 = cv2.rectangle(img2,(testpred["predxmin"][i],testpred["predymin"][i]),(testpred["predxmax"][i],testpred["predymax"][i]),(0,255,0),2)
+    plt.imshow(img3)
